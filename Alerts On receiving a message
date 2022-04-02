@@ -1,0 +1,241 @@
+activity_main.xml:
+*****************
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+ xmlns:tools="http://schemas.android.com/tools"
+ android:layout_width="match_parent"
+ android:layout_height="match_parent" >
+ <Button
+ android:id="@+id/btnGenerateNotifications"
+ android:layout_width="match_parent"
+ android:layout_height="wrap_content"
+ android:layout_alignParentLeft="true"
+ android:layout_alignParentTop="true"
+ android:layout_marginTop="186dp"
+ android:text="Click me to Generate a Notification" />
+</RelativeLayout>
+
+sub_main.xml:
+******************<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+ xmlns:tools="http://schemas.android.com/tools"
+ android:layout_width="match_parent"
+ android:layout_height="match_parent"
+ android:paddingBottom="@dimen/activity_vertical_margin"
+ android:paddingLeft="@dimen/activity_horizontal_margin"
+ android:paddingRight="@dimen/activity_horizontal_margin"
+ android:paddingTop="@dimen/activity_vertical_margin"
+ tools:context=".SubActivity" >
+ <TextView
+ android:id="@+id/textView1"
+ android:layout_width="match_parent"
+ android:layout_height="match_parent"
+ android:layout_alignParentTop="true"
+ android:layout_centerHorizontal="true"
+ android:text="Android 6.0 or Marshmallow is high in the news these 
+days. These headlines about Marshmallow are making people think whether their 
+current Android device will be upgraded to the latest version or they will be 
+left behind. A basic measure would be that most of the devices which came 
+with Android 5.0 (Lollipop) out of the box will be updated to the latest 
+Android 6.0. This post tries to list up the devices for which Android 6.0 
+update is imminent."
+ android:textAppearance="?android:attr/textAppearanceLarge" />
+</RelativeLayout>
+
+
+MainActivity.java;
+*************************
+package com.example.ex.no10;
+import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
+import android.view.Menu;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+public class MainActivity extends Activity {
+Button b;
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_main);
+b = (Button) findViewById(R.id.btnGenerateNotifications);
+b.setOnClickListener(new OnClickListener() {
+@Override
+public void onClick(View arg0) {
+Intent intent = new Intent(MainActivity.this,
+SubActivity.class);
+PendingIntent pendIntent = PendingIntent.getActivity(
+MainActivity.this, 0, intent, 0);
+NotificationCompat.Builder builder = new
+NotificationCompat.Builder(MainActivity.this);
+/* builder.setContentTitle("Normal Regular 
+Notification");
+builder.setContentText("ContentText,ContentText,ContentText,ContentText
+,ContentText,ContentText,ContentText");
+builder.setSmallIcon(R.drawable.ic_launcher);
+builder.setTicker("Message from 
+Developer.Android....");
+builder.setAutoCancel(true);
+builder.setContentIntent(pendIntent);*/
+Notification notif = builder.build();
+NotificationManager nm = 
+(NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+nm.notify(234, notif);
+aravindonlineclasses.com
+Notification notiMail = new Notification.Builder(
+MainActivity.this)
+.setTicker("Message from 
+Developer.Android....")
+.setContentTitle("Marshmallow@developer.android.in")
+.setContentText("Android 6.0")
+.setSmallIcon(R.drawable.ic_launcher)
+.setContentIntent(pendIntent).setAutoCancel(true)
+.build();
+NotificationManager notificationManager = 
+(NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+notificationManager.notify(0, notiMail);
+}
+});
+}
+@Override
+public boolean onCreateOptionsMenu(Menu menu) {
+// Inflate the menu; this adds items to the action bar if it is 
+present.
+getMenuInflater().inflate(R.menu.main, menu);
+return true; } }
+
+Subactivity.java;
+********************
+package com.example.ex.no10;
+import android.os.Bundle;
+import android.app.Activity;
+import android.view.Menu;
+public class SubActivity extends Activity {
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_sub);
+}
+@Override
+public boolean onCreateOptionsMenu(Menu menu) {
+// Inflate the menu; this adds items to the action bar if it is 
+present.
+getMenuInflater().inflate(R.menu.sub, menu);
+aravindonlineclasses.com
+return true;
+} }
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+ xmlns:tools="http://schemas.android.com/tools"
+ android:layout_width="match_parent"
+ android:layout_height="match_parent"
+ android:paddingBottom="@dimen/activity_vertical_margin"
+ android:paddingLeft="@dimen/activity_horizontal_margin"
+ android:paddingRight="@dimen/activity_horizontal_margin"
+ android:paddingTop="@dimen/activity_vertical_margin"
+ tools:context=".SubActivity" >
+ <TextView
+ android:id="@+id/textView1"
+ android:layout_width="match_parent"
+ android:layout_height="match_parent"
+ android:layout_alignParentTop="true"
+ android:layout_centerHorizontal="true"
+ android:text="Android 6.0 or Marshmallow is high in the news these 
+days. These headlines about Marshmallow are making people think whether their 
+current Android device will be upgraded to the latest version or they will be 
+left behind. A basic measure would be that most of the devices which came 
+with Android 5.0 (Lollipop) out of the box will be updated to the latest 
+Android 6.0. This post tries to list up the devices for which Android 6.0 
+update is imminent."
+ android:textAppearance="?android:attr/textAppearanceLarge" />
+</RelativeLayout>
+
+
+MainActivity.java;
+*************************
+package com.example.ex.no10;
+import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
+import android.view.Menu;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+public class MainActivity extends Activity {
+Button b;
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_main);
+b = (Button) findViewById(R.id.btnGenerateNotifications);
+b.setOnClickListener(new OnClickListener() {
+@Override
+public void onClick(View arg0) {
+Intent intent = new Intent(MainActivity.this,
+SubActivity.class);
+PendingIntent pendIntent = PendingIntent.getActivity(
+MainActivity.this, 0, intent, 0);
+NotificationCompat.Builder builder = new
+NotificationCompat.Builder(MainActivity.this);
+/* builder.setContentTitle("Normal Regular 
+Notification");
+builder.setContentText("ContentText,ContentText,ContentText,ContentText
+,ContentText,ContentText,ContentText");
+builder.setSmallIcon(R.drawable.ic_launcher);
+builder.setTicker("Message from 
+Developer.Android....");
+builder.setAutoCancel(true);
+builder.setContentIntent(pendIntent);*/
+Notification notif = builder.build();
+NotificationManager nm = 
+(NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+nm.notify(234, notif);
+aravindonlineclasses.com
+Notification notiMail = new Notification.Builder(
+MainActivity.this)
+.setTicker("Message from 
+Developer.Android....")
+.setContentTitle("Marshmallow@developer.android.in")
+.setContentText("Android 6.0")
+.setSmallIcon(R.drawable.ic_launcher)
+.setContentIntent(pendIntent).setAutoCancel(true)
+.build();
+NotificationManager notificationManager = 
+(NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+notificationManager.notify(0, notiMail);
+}
+});
+}
+@Override
+public boolean onCreateOptionsMenu(Menu menu) {
+// Inflate the menu; this adds items to the action bar if it is 
+present.
+getMenuInflater().inflate(R.menu.main, menu);
+return true; } }
+
+Subactivity.java;
+********************
+package com.example.ex.no10;
+import android.os.Bundle;
+import android.app.Activity;
+import android.view.Menu;
+public class SubActivity extends Activity {
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_sub);
+}
+@Override
+public boolean onCreateOptionsMenu(Menu menu) {
+// Inflate the menu; this adds items to the action bar if it is 
+present.
+getMenuInflater().inflate(R.menu.sub, menu);
+aravindonlineclasses.com
+return true;
+} }
