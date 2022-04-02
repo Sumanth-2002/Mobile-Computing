@@ -1,0 +1,115 @@
+activity_main.xml:
+********************
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+ xmlns:tools="http://schemas.android.com/tools"
+ android:id="@+id/LinearLayout1"
+ android:layout_width="match_parent"
+ android:layout_height="match_parent"
+ android:orientation="vertical"
+ android:paddingBottom="@dimen/activity_vertical_margin"
+ android:paddingLeft="@dimen/activity_horizontal_margin"
+ android:paddingRight="@dimen/activity_horizontal_margin"
+ android:paddingTop="@dimen/activity_vertical_margin"
+ tools:context=".MainActivity" >
+ <TextView
+ android:id="@+id/textView1"
+ android:layout_width="wrap_content"
+ android:layout_height="wrap_content"
+ android:layout_gravity="center"
+ android:text="@string/headMsg"
+ android:textAppearance="?android:attr/textAppearanceLarge"
+ android:textStyle="bold" />
+ <LinearLayout
+ android:layout_width="match_parent"
+ android:layout_height="wrap_content"
+ android:layout_marginTop="25dp"
+ android:weightSum="5" >
+ <TextView
+ android:id="@+id/textView2"
+ android:layout_width="wrap_content"
+ android:layout_height="wrap_content"
+ android:layout_weight="1"
+ android:text="@string/val" />
+ <ProgressBar
+ android:id="@+id/progressBar1"
+ style="?android:attr/progressBarStyleHorizontal"
+ android:layout_width="206dp"
+ android:layout_height="wrap_content" />
+ </LinearLayout>
+ <Button
+ android:id="@+id/button1"
+ style="?android:attr/buttonStyleSmall"
+ android:layout_width="match_parent"
+ android:layout_height="wrap_content"
+ android:layout_marginTop="25dp"
+ android:text="@string/myBtn"
+ android:textStyle="bold" />
+</LinearLayout>
+
+MainActivity.JAVA
+*****************
+package com.example.ex.no7;
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
+public class MainActivity extends Activity {
+ProgressBar pb;
+TextView tv;
+Button b;
+int i;
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_main);
+pb = (ProgressBar) findViewById(R.id.progressBar1);
+aravindonlineclasses.com
+tv = (TextView) findViewById(R.id.textView2);
+b = (Button) findViewById(R.id.button1);
+b.setOnClickListener(new OnClickListener() {
+@Override
+public void onClick(View arg0) {
+// TODO Auto-generated method stub
+Runnable r = new Runnable() {
+@Override
+public void run() {
+// TODO Auto-generated method stub
+for(i=20;i<=100;i+=20)
+{
+final int value=i;
+try
+{
+Thread.sleep(2000);
+}
+catch(Exception e){}
+pb.post(new Runnable() {
+@Override
+public void run() {
+// TODO Auto-generated 
+method stub
+tv.setText(String.valueOf(value)+"%");
+pb.setProgress(value);
+if(value==100)
+Toast.makeText(MainActivity.this, "Download Completed...", 
+3000).show();
+}
+});
+} }
+};
+new Thread(r).start();
+}
+});
+}
+@Override
+public boolean onCreateOptionsMenu(Menu menu) {
+// Inflate the menu; this adds items to the action bar if it is 
+present.
+getMenuInflater().inflate(R.menu.main, menu);
+return true; } }
+
+  
